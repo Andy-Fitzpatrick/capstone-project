@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Supplies</title>
+</head>
+<body>
+
+<h1>All Supplies</h1>
+
+<ul>
+    <th:block th:each="supply : ${supplies}">
+        <li th:text="${supply}"></li>
+    </th:block>
+</ul>
+
+</body>
+</html>
