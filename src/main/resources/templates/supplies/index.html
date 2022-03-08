@@ -8,6 +8,8 @@
 
 <h1>All Supplies</h1>
 
+<p th:unless="${supplies} and ${supplies.size()}">No supplies!</p>
+
 <ul>
     <th:block th:each="supply : ${supplies}">
         <li th:text="${supply}"></li>
