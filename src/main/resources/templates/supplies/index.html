@@ -8,6 +8,8 @@
 
 <h1>All Supplies</h1>
 
+<nav th:replace="fragments :: navigation"></nav>
+
 <p th:unless="${supplies} and ${supplies.size()}">No supplies!</p>
 
 <ul>

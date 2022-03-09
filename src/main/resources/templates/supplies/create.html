@@ -8,6 +8,8 @@
 
 <h1>Create Supply</h1>
 
+<nav th:replace="fragments :: navigation"></nav>
+
 <form method="post" action="/supplies/create">
     <input type="text" name="supplyName">
     <input type="submit" value="Create Supply">
