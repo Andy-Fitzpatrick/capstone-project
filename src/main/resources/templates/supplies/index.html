@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 
-<h1>All Supplies</h1>
+<header th:replace="fragments :: header"></header>
 
-<nav th:replace="fragments :: navigation"></nav>
-
-<p th:unless="${supplies} and ${supplies.size()}">No supplies!</p>
-
-<ul>
-    <th:block th:each="supply : ${supplies}">
-        <li th:text="${supply}"></li>
-    </th:block>
-</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tr th:each="supply : ${supplies}">
+        <td th:text="${supply}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

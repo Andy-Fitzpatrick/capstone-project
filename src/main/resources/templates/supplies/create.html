@@ -2,15 +2,20 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 
-<h1>Create Supply</h1>
-
-<nav th:replace="fragments :: navigation"></nav>
+<header th:replace="fragments :: header"></header>
 
 <form method="post" action="/supplies/create">
-    <input type="text" name="supplyName">
-    <input type="submit" value="Create Supply">
+    <div class="form-group">
+        <label>Name
+            <input type="text" name="supplyName" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create Supply" class="btn btn-success">
+    </div>
 </form>
 
 

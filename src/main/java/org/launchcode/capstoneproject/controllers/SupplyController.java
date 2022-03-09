@@ -18,12 +18,14 @@ public class SupplyController {
 
     @GetMapping
     public String displayAllSupplies(Model model) {
+        model.addAttribute("title", "All Supplies");
         model.addAttribute("supplies", supplies);
         return "supplies/index";
     }
 
     @GetMapping("create")
-    public String renderCreateSupplyForm() {
+    public String renderCreateSupplyForm(Model model) {
+        model.addAttribute("title", "Create Supply");
         return "supplies/create";
     }
 
