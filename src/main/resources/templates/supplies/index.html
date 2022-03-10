@@ -9,11 +9,15 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
+            <th>Description/Comments</th>
         </tr>
     </thead>
     <tr th:each="supply : ${supplies}">
-        <td th:text="${supply}"></td>
+        <td th:text="${supply.id}"></td>
+        <td th:text="${supply.name}"></td>
+        <td th:text="${supply.description}"></td>
     </tr>
 </table>
 

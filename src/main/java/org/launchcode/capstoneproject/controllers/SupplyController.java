@@ -1,5 +1,7 @@
 package org.launchcode.capstoneproject.controllers;
 
+import org.launchcode.capstoneproject.data.SupplyData;
+import org.launchcode.capstoneproject.models.Supply;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +16,10 @@ import java.util.List;
 @RequestMapping("supplies")
 public class SupplyController {
 
-    private static List<String> supplies = new ArrayList<>();
-
     @GetMapping
     public String displayAllSupplies(Model model) {
         model.addAttribute("title", "All Supplies");
-        model.addAttribute("supplies", supplies);
+        model.addAttribute("supplies", SupplyData.getAll());
         return "supplies/index";
     }
 
@@ -30,8 +30,8 @@ public class SupplyController {
     }
 
     @PostMapping("create")
-    public String createSupply(@RequestParam String supplyName) {
-        supplies.add(supplyName);
+    public String processCreateSupplyForm(@RequestParam String supplyName, @RequestParam String supplyDescription) {
+        SupplyData.add(new Supply(supplyName, supplyDescription));
         return "redirect:";
     }
 
