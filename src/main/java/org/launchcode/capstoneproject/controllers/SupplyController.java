@@ -35,5 +35,23 @@ public class SupplyController {
         return "redirect:";
     }
 
+    @GetMapping("delete")
+    public String displayDeleteSupplyForm(Model model) {
+        model.addAttribute("title", "Delete Supplies");
+        model.addAttribute("supplies", SupplyData.getAll());
+        return "supplies/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteSuppliesForm(@RequestParam(required = false) int[] supplyIds) {
+
+        if (supplyIds != null) {
+            for (int id : supplyIds) {
+                SupplyData.remove(id);
+            }
+        }
+        return "redirect:";
+
+    }
 
 }

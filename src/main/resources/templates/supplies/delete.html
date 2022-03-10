@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+
+    <th:block th:each="supply : ${supplies}">
+        <div class="form-group"><label>
+            <span th:text="${supply.name}"></span>
+            <input type="checkbox" name="supplyIds" th:value="${supply.id}" class="form-control">
+        </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+</body>
+</html>
