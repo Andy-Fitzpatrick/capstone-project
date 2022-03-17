@@ -12,12 +12,23 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description/Comments</th>
+            <th>Location</th>
+            <th>Color</th>
+            <th>Amount</th>
+            <th>Brand</th>
         </tr>
     </thead>
     <tr th:each="supply : ${supplies}">
         <td th:text="${supply.id}"></td>
         <td th:text="${supply.name}"></td>
         <td th:text="${supply.description}"></td>
+        <td th:text="${supply.location}"></td>
+        <td th:text="${supply.color}"></td>
+        <td th:text="${supply.amount}"></td>
+        <td th:text="${supply.brand}"></td>
+        <td>
+            <a th:href="@{/supplies/edit/{id}(id=${supply.id})}">Edit</a>
+        </td>
     </tr>
 </table>
 

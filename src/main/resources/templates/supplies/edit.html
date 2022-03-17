@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post" th:action="@{/supplies/edit}">
+
+    <input type="hidden" th:value="${supply.id}" name="supplyId">
+
+    <div class="form-group">
+        <label>Name
+            <input type="text" name="name" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Description or Comments
+            <input type="text" name="description" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Edit Supply" class="btn btn-success">
+    </div>
+</form>
+
+
+</body>
+</html>
