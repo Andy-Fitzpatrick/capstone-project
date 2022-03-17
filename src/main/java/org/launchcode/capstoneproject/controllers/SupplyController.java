@@ -2,6 +2,7 @@ package org.launchcode.capstoneproject.controllers;
 
 import org.launchcode.capstoneproject.data.SupplyData;
 import org.launchcode.capstoneproject.models.Supply;
+import org.launchcode.capstoneproject.models.SupplyCategory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,6 +27,7 @@ public class SupplyController {
     public String renderCreateSupplyForm(Model model) {
         model.addAttribute("title", "Create Supply");
         model.addAttribute(new Supply());
+        model.addAttribute("categories", SupplyCategory.values());
         return "supplies/create";
     }
 

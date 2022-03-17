@@ -30,19 +30,24 @@ public class Supply {
 
     private String brand;
 
+    private SupplyCategory category;
+
     public Supply(String name, String description, String location, String color,
-                  String amount, String brand) {
+                  String amount, String brand, SupplyCategory category) {
+        this();
         this.name = name;
         this.description = description;
         this.location = location;
         this.color = color;
         this.amount = amount;
         this.brand = brand;
+        this.category = category;
+    }
+
+    public Supply() {
         this.id = nextId;
         nextId++;
     }
-
-    public Supply() {}
 
     public String getName() {
         return name;
@@ -90,6 +95,14 @@ public class Supply {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public SupplyCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(SupplyCategory category) {
+        this.category = category;
     }
 
     public int getId() {
