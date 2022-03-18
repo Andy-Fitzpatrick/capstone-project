@@ -1,25 +1,27 @@
 package org.launchcode.capstoneproject.controllers;
 
-import org.launchcode.capstoneproject.data.SupplyData;
+import org.launchcode.capstoneproject.data.SupplyRepository;
 import org.launchcode.capstoneproject.models.Supply;
 import org.launchcode.capstoneproject.models.SupplyCategory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("supplies")
 public class SupplyController {
 
+    @Autowired
+    private SupplyRepository supplyRepository;
+
     @GetMapping
     public String displayAllSupplies(Model model) {
         model.addAttribute("title", "All Supplies");
-        model.addAttribute("supplies", SupplyData.getAll());
+        model.addAttribute("supplies", supplyRepository.findAll());
         return "supplies/index";
     }
 
@@ -39,14 +41,14 @@ public class SupplyController {
             return "supplies/create";
         }
 
-        SupplyData.add(newSupply);
+        supplyRepository.save(newSupply);
         return "redirect:";
     }
 
     @GetMapping("delete")
     public String displayDeleteSupplyForm(Model model) {
         model.addAttribute("title", "Delete Supplies");
-        model.addAttribute("supplies", SupplyData.getAll());
+        model.addAttribute("supplies", supplyRepository.findAll());
         return "supplies/delete";
     }
 
@@ -55,24 +57,33 @@ public class SupplyController {
 
         if (supplyIds != null) {
             for (int id : supplyIds) {
-                SupplyData.remove(id);
+                supplyRepository.deleteById(id);
             }
         }
         return "redirect:";
     }
 
-    @GetMapping("edit/supplyId")
-    public String displayEditForm(Model model, @PathVariable int supplyId) {
-        model.addAttribute("title", "Edit Supply ${supply.name} (id=${supply.id})");
-        model.addAttribute("edit", SupplyData.getByID(supplyId));
-        return "supplies/edit";
-    }
-
-    @PostMapping("edit")
-    public String processEditForm(Model model, @RequestParam(required = false) int supplyId) {
-        SupplyData.getByID(supplyId);
-        return "redirect:";
-    }
+//    @GetMapping("edit/{supplyId}")
+//    public String displayEditForm(Model model, @PathVariable int supplyId) {
+//        model.addAttribute("title", "Edit Supply ${supply.name} (id=${supply.id})");
+//        model.addAttribute("edit", supplyRepository.findById(supplyId));
+//        return "supplies/edit";
+//    }
+//
+//    @PostMapping("edit")
+//    public String processEditForm(Supply supply, @RequestParam(required = false) int supplyId, String name, String description,
+//                                  String location, String color, String amount, String brand, SupplyCategory category) {
+//        SupplyData.getByID(supplyId);
+//        supply.setName(supply.getName());
+//        supply.setDescription(supply.getDescription());
+//        supply.setLocation(supply.getLocation());
+//        supply.setColor(supply.getColor());
+//        supply.setAmount(supply.getAmount());
+//        supply.setBrand(supply.getBrand());
+//        supply.setCategory(supply.getCategory());
+//
+//        return "redirect:";
+//    }
 
 
 }

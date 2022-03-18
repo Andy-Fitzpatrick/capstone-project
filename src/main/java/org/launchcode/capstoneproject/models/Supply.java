@@ -1,19 +1,19 @@
 package org.launchcode.capstoneproject.models;
 
 import java.util.Objects;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Supply {
 
     @Id
     @GeneratedValue
     private int id;
-
-    private static int nextId = 1;
 
     @NotBlank(message = "Name is required")
     @Size(min = 2, message = "Name must be more than 2 characters")
@@ -34,7 +34,6 @@ public class Supply {
 
     public Supply(String name, String description, String location, String color,
                   String amount, String brand, SupplyCategory category) {
-        this();
         this.name = name;
         this.description = description;
         this.location = location;
@@ -44,10 +43,7 @@ public class Supply {
         this.category = category;
     }
 
-    public Supply() {
-        this.id = nextId;
-        nextId++;
-    }
+    public Supply() {}
 
     public String getName() {
         return name;
