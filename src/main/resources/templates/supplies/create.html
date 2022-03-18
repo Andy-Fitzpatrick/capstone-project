@@ -50,6 +50,13 @@
     </div>
 
     <div class="form-group">
+        <label>Image
+            <input th:field="${supply.imageUrl}" class="form-control">
+        </label>
+        <p class="error" th:errors="${supply.imageUrl}"></p>
+    </div>
+
+    <div class="form-group">
         <label>Category
             <select th:field="${supply.supplyCategory}">
                 <option th:each="supplyCategory : ${categories}"

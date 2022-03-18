@@ -24,12 +24,16 @@ public class Supply extends AbstractEntity {
 
     private String brand;
 
+    @Size(min = 10)
+    public String imageUrl;
+
+
     @ManyToOne
     @NotNull(message = "Category is required")
     private SupplyCategory supplyCategory;
 
     public Supply(String name, String description, String location, String color,
-                  String amount, String brand, SupplyCategory supplyCategory) {
+                  String amount, String brand, SupplyCategory supplyCategory, String imageUrl) {
         this.name = name;
         this.description = description;
         this.location = location;
@@ -37,6 +41,7 @@ public class Supply extends AbstractEntity {
         this.amount = amount;
         this.brand = brand;
         this.supplyCategory = supplyCategory;
+        this.imageUrl = imageUrl;
     }
 
     public Supply() {}
@@ -95,6 +100,14 @@ public class Supply extends AbstractEntity {
 
     public void setSupplyCategory(SupplyCategory supplyCategory) {
         this.supplyCategory = supplyCategory;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

@@ -11,7 +11,7 @@
         <th>Category Name</th>
     </tr>
     <tr th:each="category : ${categories}">
-        <td><a th:text="${category.name}" th:href="'supplies?categoryId=' + ${category.id}"></a></td>
+        <td><a th:text="${category.name}" th:href="'/supplies?categoryId=' + ${category.id}"></a></td>
     </tr>
 </table>
 

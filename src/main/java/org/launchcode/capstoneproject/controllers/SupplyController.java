@@ -3,6 +3,7 @@ package org.launchcode.capstoneproject.controllers;
 import org.launchcode.capstoneproject.data.SupplyCategoryRepository;
 import org.launchcode.capstoneproject.data.SupplyRepository;
 import org.launchcode.capstoneproject.models.Supply;
+import org.launchcode.capstoneproject.models.SupplyCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("supplies")
@@ -22,9 +24,21 @@ public class SupplyController {
     private SupplyCategoryRepository supplyCategoryRepository;
 
     @GetMapping
-    public String displayAllSupplies(Model model) {
-        model.addAttribute("title", "All Supplies");
-        model.addAttribute("supplies", supplyRepository.findAll());
+    public String displayAllSupplies(@RequestParam(required = false) Integer categoryId, Model model) {
+
+        if (categoryId == null) {
+            model.addAttribute("title", "All Supplies");
+            model.addAttribute("supplies", supplyRepository.findAll());
+        } else {
+            Optional<SupplyCategory> result = supplyCategoryRepository.findById(categoryId);
+            if (result.isEmpty()) {
+                model.addAttribute("title", "Invalid Category ID: " + categoryId);
+            } else {
+                SupplyCategory category = result.get();
+                model.addAttribute("title", "Supplies in category: " + category.getName());
+                model.addAttribute("supplies", category.getSupplies());
+            }
+        }
         return "supplies/index";
     }
 

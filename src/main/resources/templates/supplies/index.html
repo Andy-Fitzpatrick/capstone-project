@@ -17,6 +17,7 @@
             <th>Amount</th>
             <th>Brand</th>
             <th>Category</th>
+            <th>Image</th>
         </tr>
     </thead>
     <tr th:each="supply : ${supplies}">
@@ -28,6 +29,7 @@
         <td th:text="${supply.amount}"></td>
         <td th:text="${supply.brand}"></td>
         <td th:text="${supply.supplyCategory.name}"></td>
+        <img th:src="${supply.imageUrl}">
 <!--        <td>-->
 <!--            <a th:href="@{/supplies/edit/{id}(id=${supply.id})}">Edit</a>-->
 <!--        </td>-->
