@@ -1,8 +1,8 @@
 package org.launchcode.capstoneproject.controllers;
 
+import org.launchcode.capstoneproject.data.SupplyCategoryRepository;
 import org.launchcode.capstoneproject.data.SupplyRepository;
 import org.launchcode.capstoneproject.models.Supply;
-import org.launchcode.capstoneproject.models.SupplyCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +18,9 @@ public class SupplyController {
     @Autowired
     private SupplyRepository supplyRepository;
 
+    @Autowired
+    private SupplyCategoryRepository supplyCategoryRepository;
+
     @GetMapping
     public String displayAllSupplies(Model model) {
         model.addAttribute("title", "All Supplies");
@@ -26,10 +29,10 @@ public class SupplyController {
     }
 
     @GetMapping("create")
-    public String renderCreateSupplyForm(Model model) {
+    public String displayCreateSupplyForm(Model model) {
         model.addAttribute("title", "Create Supply");
         model.addAttribute(new Supply());
-        model.addAttribute("categories", SupplyCategory.values());
+        model.addAttribute("categories", supplyCategoryRepository.findAll());
         return "supplies/create";
     }
 

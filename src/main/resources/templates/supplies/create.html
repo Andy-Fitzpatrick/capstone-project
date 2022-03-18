@@ -51,12 +51,13 @@
 
     <div class="form-group">
         <label>Category
-            <select th:field="${supply.category}">
-                <option th:each="category : ${categories}"
-                    th:value="${category}"
-                        th:text="${category.name}"
+            <select th:field="${supply.supplyCategory}">
+                <option th:each="supplyCategory : ${categories}"
+                    th:value="${supplyCategory.id}"
+                        th:text="${supplyCategory.name}"
                 ></option>
             </select>
+            <p class="error" th:errors="${supply.supplyCategory}"></p>
         </label>
     </div>
 

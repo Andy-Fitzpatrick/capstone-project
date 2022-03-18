@@ -1,19 +1,29 @@
 package org.launchcode.capstoneproject.models;
 
-public enum SupplyCategory {
+import javax.persistence.Entity;
 
-    PERSONAL("Personal"),
-    SCHOOL("School"),
-    HOLIDAY("Holiday"),
-    OTHER("Other");
+@Entity
+public class SupplyCategory extends AbstractEntity{
 
-    private final String name;
+    private String name;
 
-    SupplyCategory(String name) {
+    public SupplyCategory(String name) {
         this.name = name;
     }
+
+    public SupplyCategory() {}
 
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

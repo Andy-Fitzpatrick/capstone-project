@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <tr>
+        <th>Category Name</th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td><a th:text="${category.name}" th:href="'supplies?categoryId=' + ${category.id}"></a></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -27,10 +27,10 @@
         <td th:text="${supply.color}"></td>
         <td th:text="${supply.amount}"></td>
         <td th:text="${supply.brand}"></td>
-        <td th:text="${supply.category.name}"></td>
-        <td>
-            <a th:href="@{/supplies/edit/{id}(id=${supply.id})}">Edit</a>
-        </td>
+        <td th:text="${supply.supplyCategory.name}"></td>
+<!--        <td>-->
+<!--            <a th:href="@{/supplies/edit/{id}(id=${supply.id})}">Edit</a>-->
+<!--        </td>-->
     </tr>
 </table>
 
